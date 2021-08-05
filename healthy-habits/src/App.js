@@ -15,6 +15,7 @@ function App() {
 
   // TODO: Create a state variable to track which tab should be displayed.
   // Initialize it to the string "net".
+  const [tab, setTab] = useState("net");
 
   // TODO: Inside each of the following handlers, update the corresponding numbers property from state.
   const handleUpdateSteps = (amount) => {
@@ -84,7 +85,7 @@ function App() {
 
       {/* TODO: Pass the current type into the Details component */}
       {/* TODO: Pass the four update handler functions to the Details component below. Check the propTypes object at the bottom of Details.js to get the prop names, then look just below the state variables in this file to get the names of the handler functions. */}
-      <Details />
+      <Details type={tab}/>
     </div>
   );
 }
