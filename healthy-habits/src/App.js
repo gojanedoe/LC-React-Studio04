@@ -34,6 +34,7 @@ function App() {
   // TODO: Change the current type of details to be displayed.
   const handleCurrTypeChange = (type) => {
     // Use the setter from state.
+    setTab(type);
   };
 
   // JSX to display all content on page
@@ -85,7 +86,7 @@ function App() {
 
       {/* TODO: Pass the current type into the Details component */}
       {/* TODO: Pass the four update handler functions to the Details component below. Check the propTypes object at the bottom of Details.js to get the prop names, then look just below the state variables in this file to get the names of the handler functions. */}
-      <Details type={tab}/>
+      <Details type={tab} />
     </div>
   );
 }
