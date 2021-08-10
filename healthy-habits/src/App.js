@@ -13,6 +13,8 @@ function App() {
     net: 0,
   });
 
+  // setData((prevState) => return {...prevState, steps: e.target.value});
+
   // TODO: Create a state variable to track which tab should be displayed.
   // Initialize it to the string "net".
   const [tab, setTab] = useState("net");
@@ -20,15 +22,39 @@ function App() {
   // TODO: Inside each of the following handlers, update the corresponding numbers property from state.
   const handleUpdateSteps = (amount) => {
     // You can use your setter to update the state variable directly with the new amount.
+    setData((prevState) => {
+      return { ...prevState, steps: amount };
+    });
   };
+
   const handleUpdateWater = (amount) => {
     // You can use your setter to update the state variable directly with the new amount.
+    setData((prevState) => {
+      return { ...prevState, water: amount };
+    });
   };
+
   const handleUpdateFood = (amount) => {
     // You'll need to update both the food calories and the net calories here (add calories consumed). Use prevState to ensure you are adding the new amount to the existing total.
+    setData((prevState) => {
+      return {
+        ...prevState,
+        food: prevState.food + amount,
+        net: prevState.net + amount,
+      };
+    });
   };
+
   const handleUpdateExercise = (amount) => {
     // You'll need to update both the food calories and the net calories here (subtract calories burned). Use prevState to ensure you are adding the new amount to the existing total.
+
+    setData((prevState) => {
+      return {
+        ...prevState,
+        exercise: prevState.exercise + amount,
+        net: prevState.net - amount,
+      };
+    });
   };
 
   // TODO: Change the current type of details to be displayed.
@@ -86,7 +112,13 @@ function App() {
 
       {/* TODO: Pass the current type into the Details component */}
       {/* TODO: Pass the four update handler functions to the Details component below. Check the propTypes object at the bottom of Details.js to get the prop names, then look just below the state variables in this file to get the names of the handler functions. */}
-      <Details type={tab} />
+      <Details
+        type={tab}
+        updateSteps={handleUpdateSteps}
+        updateWater={handleUpdateWater}
+        updateFood={handleUpdateFood}
+        updateExercise={handleUpdateExercise}
+      />
     </div>
   );
 }
